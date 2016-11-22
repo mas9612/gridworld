@@ -8,19 +8,17 @@ int main()
     const int WORLD_SIZE = 4;
     const int NUMBER_OF_AGENT = 100;
     const int AGENT_LIFE = 100;
-    const int REWARD_COEF = 1;
     const int LOG_LIMIT = 10;
+    const double REWARD_COEF = 2.0;
 
     GridWorld gridworld(WORLD_SIZE);
 
     gridworld.setGoal();
 
     for (int id = 0; id < NUMBER_OF_AGENT; id++) {
-        std::cout << id << '\n';
         Agent agent(WORLD_SIZE, AGENT_LIFE, REWARD_COEF, LOG_LIMIT);
         agent.reinforcementLearning(gridworld);
     }
-
     std::cout << "======================== printGrid() =========================\n";
     gridworld.printGrid();
     std::cout << std::endl;

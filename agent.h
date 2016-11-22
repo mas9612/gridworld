@@ -17,12 +17,12 @@ private:
     std::vector<int> y_log;
     std::vector<enum Direction> direction_log;
 
-    void reward(GridWorld grid);
+    void reward(GridWorld& grid);
     void move(Cell cell);
 
 public:
     Agent(int n, int life, double reward_coef, int log_limit);
-    void reinforcementLearning(GridWorld grid);
+    void reinforcementLearning(GridWorld& grid);
 
     int getX() { return this->x; }
     int getY() { return this->y; }

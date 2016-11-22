@@ -25,15 +25,6 @@ GridWorld::GridWorld(int n)
 
         this->grid.push_back(row);
     }
-    // printGrid();
-    // std::cout << std::endl;
-    // std::cout << std::endl;
-    // std::cout << std::endl;
-
-    // printProb();
-    // std::cout << std::endl;
-    // std::cout << std::endl;
-    // std::cout << std::endl;
 }
 
 void GridWorld::setGoal()
@@ -62,7 +53,6 @@ Cell GridWorld::getCell(int x, int y)
 
 void GridWorld::setCell(int x, int y, Cell cell)
 {
-    // this->grid[x][y] = cell;
     this->grid[y][x] = cell;
 }
 

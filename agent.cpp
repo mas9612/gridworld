@@ -13,40 +13,21 @@ Agent::Agent(int n, int life, double reward_coef, int log_limit)
     this->y = rand() % n;
 }
 
-void Agent::reinforcementLearning(GridWorld grid)
+void Agent::reinforcementLearning(GridWorld& grid)
 {
     for (int i = 0; i < this->LIFE; i++) {
         // if goal then give reword
         if (this->x == grid.getGoalX() && this->y == grid.getGoalY()) {
-            std::cout << "this->x = " << this->x << ", this->y = " << this->y << '\n';
-            std::cout << "goal.x = " << grid.getGoalX() << ", goal.y = " << grid.getGoalY() << '\n';
             reward(grid);
-            // grid.printGrid();
             break;
         }
-
-        // ========================= DEBUG ===========================
-        // std::cout << "i: " << i << '\n';
-        // std::cout << "  x: " << this->x << ", y: " << this->y << '\n';
-        // Cell cell = grid.getCell(this->x, this->y);
-        // std::cout << "  p_up: " << cell.getProbUp();
-        // std::cout << "  p_down: " << cell.getProbDown();
-        // std::cout << "  p_right: " << cell.getProbRight();
-        // std::cout << "  p_left: " << cell.getProbLeft();
-        // std::cout << '\n';
-        // std::cout << "  up: " << cell.getUp() << '\n';
-        // std::cout << "  down: " << cell.getDown() << '\n';
-        // std::cout << "  right: " << cell.getRight() << '\n';
-        // std::cout << "  left: " << cell.getLeft() << '\n';
-        // ========================= DEBUG ===========================
 
         move(grid.getCell(this->x, this->y));
     }
 }
 
-void Agent::reward(GridWorld grid)
+void Agent::reward(GridWorld& grid)
 {
-    std::cout << "-=-=-=-=-=-=-= Goal -=-=-=-=-=-=\n";
     int step = this->direction_log.size();
 
     for (int t = 1; t < this->LOG_LIMIT && t < step; t++) {
@@ -54,6 +35,7 @@ void Agent::reward(GridWorld grid)
         int y = this->y_log[step - t];
         enum Direction direction = this->direction_log[step - t];
         Cell oldCell = grid.getCell(x, y);
+        // TODO: declare copy constructor and replace this statement
         Cell newCell(oldCell.getUp(), oldCell.getDown(), oldCell.getRight(), oldCell.getLeft());
         double add = this->REWARD_COEF * (this->LOG_LIMIT - t + 1) / this->LOG_LIMIT;
         switch (direction) {
@@ -82,11 +64,6 @@ void Agent::move(Cell cell)
     std::random_device rand;
     double number = (double)rand() / rand.max();
 
-    // std::cout << "number: " << number << '\n';
-    // std::cout << std::endl;
-    // std::cout << std::endl;
-    // std::cout << std::endl;
-
     // save move log
     this->x_log.push_back(this->x);
     this->y_log.push_back(this->y);
@@ -95,12 +72,12 @@ void Agent::move(Cell cell)
     if (number < cell.getProbUp()) {
         this->y--;
         this->direction_log.push_back(UP);
-    // } else if (number < cell.getProbUp() + cell.getProbRight()) {
-    } else if ((number < cell.getProbUp() + cell.getProbRight()) || (cell.getProbDown() == 0 && cell.getProbLeft() == 0)) {
+    } else if (number < cell.getProbUp() + cell.getProbRight()) {
+    // } else if ((number < cell.getProbUp() + cell.getProbRight()) || (cell.getProbDown() == 0 && cell.getProbLeft() == 0)) {
         this->x++;
         this->direction_log.push_back(RIGHT);
-    // } else if (number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) {
-    } else if ((number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) || cell.getProbLeft() == 0) {
+    } else if (number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) {
+    // } else if ((number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) || cell.getProbLeft() == 0) {
         this->y++;
         this->direction_log.push_back(DOWN);
     } else {
