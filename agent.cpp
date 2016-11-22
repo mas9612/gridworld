@@ -47,11 +47,10 @@ void Agent::reinforcementLearning(GridWorld grid)
 
 void Agent::reward(GridWorld grid)
 {
-
     std::cout << "ゴール\n";
     int step = this->direction_log.size();
 
-    for (int t = 0; t < this->LOG_LIMIT && t < step; t++) {
+    for (int t = 1; t < this->LOG_LIMIT && t < step; t++) {
         int x = this->x_log[step - t];
         int y = this->y_log[step - t];
         enum Direction direction = this->direction_log[step - t];

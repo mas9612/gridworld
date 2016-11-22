@@ -4,11 +4,13 @@
 class Cell
 {
 private:
+    // reward
     double up;
     double down;
     double right;
     double left;
 
+    // probability
     double p_up;
     double p_down;
     double p_right;

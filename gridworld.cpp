@@ -58,31 +58,18 @@ int GridWorld::getGoalY()
 
 Cell GridWorld::getCell(int x, int y)
 {
-    return this->grid[x][y];
+    // return this->grid[x][y];
+    return this->grid[y][x];
 }
 
 void GridWorld::setCell(int x, int y, Cell cell)
 {
-    this->grid[x][y] = cell;
+    // this->grid[x][y] = cell;
+    this->grid[y][x] = cell;
 }
-
-// void GridWorld::calcProbability()
-// {
-//     for (std::vector<std::vector<Cell> >::iterator itr = this->grid.begin(); itr != this->grid.end(); itr++) {
-//         for (std::vector<Cell>::iterator subItr = itr->begin(); subItr != itr->end(); subItr++) {
-//             double probSum = subItr->getUp() + subItr->getDown() + subItr->getRight() + subItr->getLeft();
-//             subItr->setUp(subItr->getUp() / probSum);
-//             subItr->setDown(subItr->getDown() / probSum);
-//             subItr->setRight(subItr->getRight() / probSum);
-//             subItr->setLeft(subItr->getLeft() / probSum);
-//         }
-//     }
-// }
 
 void GridWorld::printGrid()
 {
-    // for (std::vector<std::vector<Cell> >::iterator itr = this->grid.begin(); itr != this->grid.end(); itr++) {
-    //     for (std::vector<Cell>::iterator subItr = itr->begin(); subItr != itr->end(); subItr++) {
     for (int i = 0; i < this->grid.size(); i++) {
         for (int j = 0; j < this->grid[i].size(); j++) {
             std::cout << "x = " << j << ", y = " << i << '\n';

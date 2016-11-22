@@ -7,8 +7,7 @@ int main()
     // const
     const int WORLD_SIZE = 4;
     const int NUMBER_OF_AGENT = 100;
-    // const int AGENT_LIFE = 100;
-    const int AGENT_LIFE = 10;
+    const int AGENT_LIFE = 100;
     const int REWARD_COEF = 1;
     const int LOG_LIMIT = 10;
 
