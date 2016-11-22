@@ -50,51 +50,51 @@ void Cell::setLeft(double left)
     this->left = left;
 }
 
-double Cell::getP_up()
+double Cell::getProbUp()
 {
-    return this->p_up;
+    return this->probUp;
 }
 
-double Cell::getP_down()
+double Cell::getProbDown()
 {
-    return this->p_down;
+    return this->probDown;
 }
 
-double Cell::getP_right()
+double Cell::getProbRight()
 {
-    return this->p_right;
+    return this->probRight;
 }
 
-double Cell::getP_left()
+double Cell::getProbLeft()
 {
-    return this->p_left;
+    return this->probLeft;
 }
 
-void Cell::setP_up(double p_up)
+void Cell::setProbUp(double probUp)
 {
-    this->p_up = p_up;
+    this->probUp = probUp;
 }
 
-void Cell::setP_down(double p_down)
+void Cell::setProbDown(double probDown)
 {
-    this->p_down = p_down;
+    this->probDown = probDown;
 }
 
-void Cell::setP_right(double p_right)
+void Cell::setProbRight(double probRight)
 {
-    this->p_right = p_right;
+    this->probRight = probRight;
 }
 
-void Cell::setP_left(double p_left)
+void Cell::setProbLeft(double probLeft)
 {
-    this->p_left = p_left;
+    this->probLeft = probLeft;
 }
 
 void Cell::calcProbability()
 {
     double sum = this->up + this->down + this->right + this->left;
-    this->p_up = this->up / sum;
-    this->p_down = this->down / sum;
-    this->p_right = this->right / sum;
-    this->p_left = this->left / sum;
+    this->probUp = this->up / sum;
+    this->probDown = this->down / sum;
+    this->probRight = this->right / sum;
+    this->probLeft = this->left / sum;
 }

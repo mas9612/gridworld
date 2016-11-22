@@ -16,8 +16,17 @@ int main()
     gridworld.setGoal();
 
     for (int id = 0; id < NUMBER_OF_AGENT; id++) {
+        std::cout << id << '\n';
         Agent agent(WORLD_SIZE, AGENT_LIFE, REWARD_COEF, LOG_LIMIT);
         agent.reinforcementLearning(gridworld);
     }
+
+    std::cout << "======================== printGrid() =========================\n";
+    gridworld.printGrid();
+    std::cout << std::endl;
+
+    std::cout << "======================== printProb() =========================\n";
+    gridworld.printProb();
+    std::cout << std::endl;
 }
 

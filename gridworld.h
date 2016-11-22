@@ -20,7 +20,6 @@ public:
     int getGoalY();
     Cell getCell(int x, int y);
     void setCell(int x, int y, Cell cell);
-    // void calcProbability();
 
     void printGrid();
     void printProb();

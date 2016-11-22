@@ -25,25 +25,23 @@ GridWorld::GridWorld(int n)
 
         this->grid.push_back(row);
     }
-    printGrid();
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
+    // printGrid();
+    // std::cout << std::endl;
+    // std::cout << std::endl;
+    // std::cout << std::endl;
 
-    printProb();
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
+    // printProb();
+    // std::cout << std::endl;
+    // std::cout << std::endl;
+    // std::cout << std::endl;
 }
 
 void GridWorld::setGoal()
 {
     std::random_device rand;
 
-    // this->goalX = rand() % this->width;
-    // this->goalY = rand() % this->width;
-    this->goalX = this->width - 1;
-    this->goalY = this->width - 1;
+    this->goalX = rand() % this->width;
+    this->goalY = rand() % this->width;
 }
 
 int GridWorld::getGoalX()
@@ -87,10 +85,10 @@ void GridWorld::printProb()
     for (int i = 0; i < this->grid.size(); i++) {
         for (int j = 0; j < this->grid[i].size(); j++) {
             std::cout << "x = " << j << ", y = " << i << '\n';
-            std::cout << "  p_up: " << this->grid[i][j].getP_up() << '\n';
-            std::cout << "  p_down: " << this->grid[i][j].getP_down() << '\n';
-            std::cout << "  p_right: " << this->grid[i][j].getP_right() << '\n';
-            std::cout << "  p_left: " << this->grid[i][j].getP_left() << '\n';
+            std::cout << "  p_up: " << this->grid[i][j].getProbUp() << '\n';
+            std::cout << "  p_down: " << this->grid[i][j].getProbDown() << '\n';
+            std::cout << "  p_right: " << this->grid[i][j].getProbRight() << '\n';
+            std::cout << "  p_left: " << this->grid[i][j].getProbLeft() << '\n';
         }
         std::cout << std::endl;
     }
