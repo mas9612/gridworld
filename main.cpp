@@ -21,32 +21,20 @@ int main()
         Agent agent(WORLD_SIZE, AGENT_LIFE, REWARD_COEF, LOG_LIMIT);
         agent.reinforcementLearning(gridworld);
     }
-    std::cout << "======================== printGrid() =========================\n";
-    gridworld.printGrid();
-    std::cout << std::endl;
-
-    std::cout << "======================== printProb() =========================\n";
-    gridworld.printProb();
-    std::cout << std::endl;
 
     int goalAchieved = 0;
     for (int id = 0; id < NUMBER_OF_AGENT; id++) {
         Evaluator evaluator(WORLD_SIZE, EVALUATOR_LIFE);
         goalAchieved += evaluator.checkLearning(gridworld);
     }
-    std::cout << "======================== printGrid() =========================\n";
-    gridworld.printGrid();
-    std::cout << std::endl;
-
-    std::cout << "======================== printProb() =========================\n";
-    gridworld.printProb();
-    std::cout << std::endl;
 
     std::cout << "======================== Statistics ==========================\n";
     std::cout << "World size: " << WORLD_SIZE << '\n';
     std::cout << "Number of agent: " << NUMBER_OF_AGENT << '\n';
     std::cout << "Agent life: " << AGENT_LIFE << '\n';
     std::cout << "Reward coefficient: " << REWARD_COEF << '\n';
-    std::cout << "Number of evaluator achieved goal: " << goalAchieved;
+    std::cout << "Number of evaluator: " << NUMBER_OF_AGENT << '\n';
+    std::cout << "Evaluator life: " << EVALUATOR_LIFE << '\n';
+    std::cout << "Number of evaluator achieved goal: " << goalAchieved << '\n';
 }
 
