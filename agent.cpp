@@ -13,6 +13,31 @@ Agent::Agent(int n, int life, double reward_coef, int log_limit)
     this->y = rand() % n;
 }
 
+int Agent::getX()
+{
+    return this->x;
+}
+
+int Agent::getY()
+{
+    return this->y;
+}
+
+void Agent::setX(int x)
+{
+    this->x = x;
+}
+
+void Agent::setY(int y)
+{
+    this->y = y;
+}
+
+int Agent::getLife()
+{
+    return this->LIFE;
+}
+
 void Agent::reinforcementLearning(GridWorld& grid)
 {
     for (int i = 0; i < this->LIFE; i++) {
@@ -21,7 +46,6 @@ void Agent::reinforcementLearning(GridWorld& grid)
             reward(grid);
             break;
         }
-
         move(grid.getCell(this->x, this->y));
     }
 }
@@ -35,7 +59,6 @@ void Agent::reward(GridWorld& grid)
         int y = this->y_log[step - t];
         enum Direction direction = this->direction_log[step - t];
         Cell oldCell = grid.getCell(x, y);
-        // TODO: declare copy constructor and replace this statement
         Cell newCell(oldCell.getUp(), oldCell.getDown(), oldCell.getRight(), oldCell.getLeft());
         double add = this->REWARD_COEF * (this->LOG_LIMIT - t + 1) / this->LOG_LIMIT;
         switch (direction) {
@@ -73,11 +96,9 @@ void Agent::move(Cell cell)
         this->y--;
         this->direction_log.push_back(UP);
     } else if (number < cell.getProbUp() + cell.getProbRight()) {
-    // } else if ((number < cell.getProbUp() + cell.getProbRight()) || (cell.getProbDown() == 0 && cell.getProbLeft() == 0)) {
         this->x++;
         this->direction_log.push_back(RIGHT);
     } else if (number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) {
-    // } else if ((number < cell.getProbUp() + cell.getProbRight() + cell.getProbDown()) || cell.getProbLeft() == 0) {
         this->y++;
         this->direction_log.push_back(DOWN);
     } else {

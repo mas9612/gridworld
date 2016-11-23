@@ -47,7 +47,6 @@ int GridWorld::getGoalY()
 
 Cell GridWorld::getCell(int x, int y)
 {
-    // return this->grid[x][y];
     return this->grid[y][x];
 }
 

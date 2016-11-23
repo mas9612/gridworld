@@ -11,24 +11,26 @@ private:
     const double REWARD_COEF;
     const int LOG_LIMIT;
     enum Direction { UP, DOWN, RIGHT, LEFT };
-    int x;
-    int y;
     std::vector<int> x_log;
     std::vector<int> y_log;
     std::vector<enum Direction> direction_log;
 
-    void reward(GridWorld& grid);
-    void move(Cell cell);
+protected:
+    int x;
+    int y;
 
 public:
-    Agent(int n, int life, double reward_coef, int log_limit);
+    Agent(int n, int life = 0, double reward_coef = 0, int log_limit = 0);
+
+    int getX();
+    int getY();
+    void setX(int x);
+    void setY(int y);
+    int getLife();
+
     void reinforcementLearning(GridWorld& grid);
-
-    int getX() { return this->x; }
-    int getY() { return this->y; }
-    void setX(int x) { this->x = x; }
-    void setY(int y) { this->y = y; }
-
+    void reward(GridWorld& grid);
+    void move(Cell cell);
 };
 
 #endif
