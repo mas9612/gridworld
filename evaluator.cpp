@@ -22,11 +22,11 @@ int Evaluator::checkLearning(GridWorld& grid)
 void Evaluator::move(Cell cell)
 {
     std::vector<Direction> maxDirection;
-    std::vector<double> probs = {cell.getProbUp(), cell.getProbDown(), cell.getProbRight(), cell.getProbLeft()};
-    double max = *std::max_element(probs.begin(), probs.end());
+    std::vector<double> rewards = {cell.getUp(), cell.getDown(), cell.getRight(), cell.getLeft()};
+    double max = *std::max_element(rewards.begin(), rewards.end());
 
-    for (int i = 0; i < probs.size(); i++) {
-        if (probs[i] == max)
+    for (int i = 0; i < rewards.size(); i++) {
+        if (rewards[i] == max)
             maxDirection.push_back(static_cast<Direction>(i));
     }
 

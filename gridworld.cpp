@@ -1,5 +1,7 @@
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <random>
 #include "gridworld.h"
 
@@ -58,15 +60,60 @@ void GridWorld::setCell(int x, int y, Cell cell)
 void GridWorld::printGrid()
 {
     for (int i = 0; i < this->grid.size(); i++) {
+        std::vector<std::vector<std::string> > directions;
         for (int j = 0; j < this->grid[i].size(); j++) {
-            std::cout << "x = " << j << ", y = " << i << '\n';
-            std::cout << "  up: " << this->grid[i][j].getUp() << '\n';
-            std::cout << "  down: " << this->grid[i][j].getDown() << '\n';
-            std::cout << "  right: " << this->grid[i][j].getRight() << '\n';
-            std::cout << "  left: " << this->grid[i][j].getLeft() << '\n';
+            std::vector<std::string> dir;
+            std::vector<double> rewards = {this->grid[i][j].getUp(), this->grid[i][j].getDown(), this->grid[i][j].getRight(), this->grid[i][j].getLeft()};
+            double max = *std::max_element(rewards.begin(), rewards.end());
+            if (i == this->getGoalY() && j == this->getGoalX())
+                dir.push_back("goal");
+            else {
+                if (this->grid[i][j].getUp() == max)
+                    dir.push_back("up");
+                if (this->grid[i][j].getDown() == max)
+                    dir.push_back("down");
+                if (this->grid[i][j].getRight() == max)
+                    dir.push_back("right");
+                if (this->grid[i][j].getLeft() == max)
+                    dir.push_back("left");
+            }
+            directions.push_back(dir);
         }
-        std::cout << std::endl;
+
+        for (int j = 0; j < 7 * this->width + 1; j++)
+            std::cout << "-";
+        std::cout << '\n';
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
+            if (std::find(itr->begin(), itr->end(), "up") != itr->end())
+                std::cout << "|  ↑  ";
+            else
+                std::cout << "|      ";
+        }
+        std::cout << "|\n";
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
+            if (std::find(itr->begin(), itr->end(), "goal") != itr->end())
+                std::cout << "|  Goal  ";
+            else if ((std::find(itr->begin(), itr->end(), "left") != itr->end()) && (std::find(itr->begin(), itr->end(), "right") != itr->end()))
+                std::cout << "|←  →";
+            else if (std::find(itr->begin(), itr->end(), "left") != itr->end())
+                std::cout << "|←    ";
+            else if (std::find(itr->begin(), itr->end(), "right") != itr->end())
+                std::cout << "|    →";
+            else
+                std::cout << "|      ";
+        }
+        std::cout << "|\n";
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
+            if (std::find(itr->begin(), itr->end(), "down") != itr->end())
+                std::cout << "|  ↓  ";
+            else
+                std::cout << "|      ";
+        }
+        std::cout << "|\n";
     }
+    for (int i = 0; i < 7 * this->width + 1; i++)
+        std::cout << "-";
+    std::cout << '\n';
 }
 
 void GridWorld::printProb()

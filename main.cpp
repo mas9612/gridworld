@@ -6,10 +6,10 @@
 int main()
 {
     // const
-    const int WORLD_SIZE = 10;
+    const int WORLD_SIZE = 5;
     const int NUMBER_OF_AGENT = 100;
     const int AGENT_LIFE = 100;
-    const int EVALUATOR_LIFE = 20;
+    const int EVALUATOR_LIFE = 10;
     const int LOG_LIMIT = 10;
     const double REWARD_COEF = 10.0;
 
@@ -36,5 +36,9 @@ int main()
     std::cout << "Number of evaluator: " << NUMBER_OF_AGENT << '\n';
     std::cout << "Evaluator life: " << EVALUATOR_LIFE << '\n';
     std::cout << "Number of evaluator achieved goal: " << goalAchieved << '\n';
+    std::cout << "Goal: (" << gridworld.getGoalX() << ", " << gridworld.getGoalY() << ")\n";
+    std::cout << std::endl;
+
+    gridworld.printGrid();
 }
 
