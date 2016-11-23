@@ -11,7 +11,9 @@ private:
 
 public:
     Evaluator(int n, int life);
+
     int checkLearning(GridWorld& grid);
+    void move(Cell cell);
 };
 
 #endif

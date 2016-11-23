@@ -9,7 +9,7 @@ int main()
     const int WORLD_SIZE = 10;
     const int NUMBER_OF_AGENT = 100;
     const int AGENT_LIFE = 100;
-    const int EVALUATOR_LIFE = 25;
+    const int EVALUATOR_LIFE = 20;
     const int LOG_LIMIT = 10;
     const double REWARD_COEF = 10.0;
 
