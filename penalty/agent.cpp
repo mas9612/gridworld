@@ -59,8 +59,7 @@ void Agent::reward(GridWorld& grid)
         int y = this->y_log[step - t];
         enum Direction direction = this->direction_log[step - t];
         Cell oldCell = grid.getCell(x, y);
-        Cell newCell(oldCell.getUp(), oldCell.getDown(),
-                oldCell.getRight(), oldCell.getLeft());
+        Cell newCell(oldCell.getUp(), oldCell.getDown(), oldCell.getRight(), oldCell.getLeft());
         double add = this->REWARD_COEF * (this->LOG_LIMIT - t + 1) / this->LOG_LIMIT;
         switch (direction) {
             case UP:

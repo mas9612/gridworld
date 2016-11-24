@@ -3,3 +3,4 @@ reinforcementLearning
 tags
 *.o
 .gdb_history
+.DS_store

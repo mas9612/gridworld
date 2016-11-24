@@ -2,6 +2,7 @@
 #include "gridworld.h"
 #include "agent.h"
 #include "evaluator.h"
+#include "PenaltyAgent.h"
 
 int main()
 {
@@ -12,13 +13,14 @@ int main()
     const int EVALUATOR_LIFE = 25;
     const int LOG_LIMIT = 20;
     const double REWARD_COEF = 10.0;
+    const double PENALTY = 10.0;
 
     GridWorld gridworld(WORLD_SIZE);
 
     gridworld.setGoal();
 
     for (int id = 0; id < NUMBER_OF_AGENT; id++) {
-        Agent agent(WORLD_SIZE, AGENT_LIFE, REWARD_COEF, LOG_LIMIT);
+        PenaltyAgent agent(PENALTY, WORLD_SIZE, AGENT_LIFE, REWARD_COEF, LOG_LIMIT);
         agent.reinforcementLearning(gridworld);
     }
 

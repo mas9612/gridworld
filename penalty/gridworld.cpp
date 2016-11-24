@@ -13,19 +13,16 @@ GridWorld::GridWorld(int n)
 
         // set probability of outbound direction to 0
         if (i == 0) {
-            for (std::vector<Cell>::iterator itr = row.begin();
-                    itr != row.end(); itr++)
+            for (std::vector<Cell>::iterator itr = row.begin(); itr != row.end(); itr++)
                 itr->setUp(0);
         } else if (i == n - 1) {
-            for (std::vector<Cell>::iterator itr = row.begin();
-                    itr != row.end(); itr++)
+            for (std::vector<Cell>::iterator itr = row.begin(); itr != row.end(); itr++)
                 itr->setDown(0);
         }
         row.front().setLeft(0);
         row.back().setRight(0);
 
-        for (std::vector<Cell>::iterator itr = row.begin();
-                itr != row.end(); itr++)
+        for (std::vector<Cell>::iterator itr = row.begin(); itr != row.end(); itr++)
             itr->calcProbability();
 
         this->grid.push_back(row);
@@ -66,12 +63,7 @@ void GridWorld::printGrid()
         std::vector<std::vector<std::string> > directions;
         for (int j = 0; j < this->grid[i].size(); j++) {
             std::vector<std::string> dir;
-            std::vector<double> rewards = {
-                this->grid[i][j].getUp(),
-                this->grid[i][j].getDown(),
-                this->grid[i][j].getRight(),
-                this->grid[i][j].getLeft()
-            };
+            std::vector<double> rewards = {this->grid[i][j].getUp(), this->grid[i][j].getDown(), this->grid[i][j].getRight(), this->grid[i][j].getLeft()};
             double max = *std::max_element(rewards.begin(), rewards.end());
             if (i == this->getGoalY() && j == this->getGoalX())
                 dir.push_back("goal");
@@ -91,20 +83,17 @@ void GridWorld::printGrid()
         for (int j = 0; j < 7 * this->width + 1; j++)
             std::cout << "-";
         std::cout << '\n';
-        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin();
-                itr != directions.end(); itr++) {
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
             if (std::find(itr->begin(), itr->end(), "up") != itr->end())
                 std::cout << "|  ↑  ";
             else
                 std::cout << "|      ";
         }
         std::cout << "|\n";
-        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin();
-                itr != directions.end(); itr++) {
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
             if (std::find(itr->begin(), itr->end(), "goal") != itr->end())
                 std::cout << "| Goal ";
-            else if ((std::find(itr->begin(), itr->end(), "left") != itr->end())
-                    && (std::find(itr->begin(), itr->end(), "right") != itr->end()))
+            else if ((std::find(itr->begin(), itr->end(), "left") != itr->end()) && (std::find(itr->begin(), itr->end(), "right") != itr->end()))
                 std::cout << "|←  →";
             else if (std::find(itr->begin(), itr->end(), "left") != itr->end())
                 std::cout << "|←    ";
@@ -114,8 +103,7 @@ void GridWorld::printGrid()
                 std::cout << "|      ";
         }
         std::cout << "|\n";
-        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin();
-                itr != directions.end(); itr++) {
+        for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
             if (std::find(itr->begin(), itr->end(), "down") != itr->end())
                 std::cout << "|  ↓  ";
             else
