@@ -92,7 +92,7 @@ void GridWorld::printGrid()
         std::cout << "|\n";
         for (std::vector<std::vector<std::string> >::iterator itr = directions.begin(); itr != directions.end(); itr++) {
             if (std::find(itr->begin(), itr->end(), "goal") != itr->end())
-                std::cout << "|  Goal  ";
+                std::cout << "| Goal ";
             else if ((std::find(itr->begin(), itr->end(), "left") != itr->end()) && (std::find(itr->begin(), itr->end(), "right") != itr->end()))
                 std::cout << "|←  →";
             else if (std::find(itr->begin(), itr->end(), "left") != itr->end())
