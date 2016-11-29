@@ -33,8 +33,10 @@ void GridWorld::setGoal()
 {
     std::random_device rand;
 
-    this->goalX = rand() % this->width;
-    this->goalY = rand() % this->width;
+    this->goalX = this->width - 1;
+    this->goalY = this->width - 1;
+    // this->goalX = rand() % this->width;
+    // this->goalY = rand() % this->width;
 }
 
 int GridWorld::getGoalX()
